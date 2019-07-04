@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="css/lib/bootstrap.css"/>
+  <link rel="stylesheet" href="css/index.css"/>
+  <title>Hash</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="navbarMenu">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <div class="d-flex justify-content-center col-md-12">
+        <h3 style="color:white;">Hash</h3>
+      </div>
+    </div>
+  </nav>
+  <hr>
+  <div class="container-fluid">
+    <!--Modal Insert-->
+    <div class="modal fade" id="modalInsert" tabindex="-1" role="dialog" aria-labelledby="modalInsertLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title textGreen" id="modalInsert">Insert node</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <input type="text" class="form-control" id="nodeKeyInsert" placeholder="Key" maxlength="">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" id="nodeValueInsert" placeholder="Value" maxlength="">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" id="buttonModalInsertNode">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Modal Delete-->
+    <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title textRed" id="modalDelete">Delete node</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <input type="text" class="form-control" id="nodeKeyDelete" placeholder="Key" maxlength="">
+              </div>
+              <div class="form-group">
+                <!-- <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" value="0" id="radioDelete_RemoveInsert" name="radioDelete" class="custom-control-input" checked>
+                  <label class="custom-control-label" for="radioDelete_RemoveInsert">Remove and Insert</label>
+                </div> -->
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" value="1" id="radioDelete_Avaliable" name="radioDelete" class="custom-control-input" checked>
+                  <label class="custom-control-label" for="radioDelete_Avaliable">Avaliable</label>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" id="buttonModalDeleteNode">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Modal Info-->
+    <div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="modalInfoLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalDelete">Information</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="nodeKey">Key:</label>
+              <input type="text" class="form-control" id="modalInfoKey" readonly>
+              <label for="nodeKey">Value:</label>
+              <input type="text" class="form-control" id="modalInfoValue" readonly>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" id="parameters">
+      <div class="container">
+        <div class=" col-md-12">
+          <form>
+            <h3 class="h3">Parameters</h3>
+            <hr>
+            <div class="form-group">
+              <label for="inputTableSize">Table size:</label>
+              <input type="text" class="form-control" id="inputTableSize" placeholder="Size">
+              <small class="form-text text-muted" id="smallTableSize">  </small>
+            </div>
+            <button type="button" class="btn btn-primary" id="buttonTableSize">Ok</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="row" id="content" style="display: none">
+      <div class="container">
+        <div class=" col-md-12">
+          <div class="row justify-content-center">
+            <!-- <div class="col-md-6" style="margin-left: 10px;border:solid 1px red;"> -->
+              <button type="button"  class="btn btn-primary" id="buttonOkInsert" style="display:none;">Ok</button>
+              <button type="button"  class="btn btn-success margin-left" id="buttonAddNode" data-toggle="modal" data-target="#modalInsert">Add node</button>
+              <button type="button"  class="btn btn-danger margin-left" id="buttonDeleteNode" data-toggle="modal" data-target="#modalDelete">Delete node</button>
+
+              <div class="col-md-2" id="div_selectVelocity">
+                <select class="form-control form-control" id="selectVelocity">
+                  <option value="150" selected>Fastest</option>
+                  <option value="350">Fast</option>
+                  <option value="650">Slow</option>
+                </select>
+              </div>
+
+              <form class="form-inline margin-left" id="formSearchNode">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="inputSearchNode">
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+              </form>
+              <button type="button" class="btn btn-info margin-left" id="buttonCompact">Compact</button>
+
+            <!-- </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center" id="div_notInteractive" style="display:none!important;">
+      <p id="sizeTable" class="alert alert-warning"></p>
+      <p id="exists" class="alert alert-success"></p>
+      <p id="notExists" class="alert alert-danger"></p>
+      <p id="inserted"  class="alert alert-success"></p>
+      <p id="deleted"  class="alert alert-danger"></p>
+      <div class="form-group">
+        <div class="form-row d-flex justify-content-end">
+          <input type="text" class="form-control" id="input_insertMany">
+          <small class="form-text text-muted">Valid value : { "key" : 1, "value" : "test" }, { "key" : 2, "value" : "test2" }</small>
+        </div>
+        <button type="button" class="btn btn-primary" id="btn_insertMany">Insert many</button>
+
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+
+    </div>
+  </div>
+  <div id="svgDiv">
+
+  </div>
+
+  <script src="js/lib/jquery.js"></script>
+  <script src="js/lib/bootstrap.js"></script>
+  <script src="js/lib/d3.js"></script>
+
+  <script src="js/object/HashTable.js"></script>
+
+  <script src="js/index.js"></script>
+
+</body>
+</html>

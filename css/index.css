@@ -1,0 +1,21 @@
+.margin-left{
+  margin-left: 5px;
+}
+.object .node:hover{
+  stroke: #ffc107;
+}
+.textRed{
+  color: red;
+}
+.textGreen{
+  color: green;
+}
+.hide{
+  display: none!important;
+}
+#div_notInteractive{
+  padding: 20px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction:column;
+}
